@@ -1,40 +1,40 @@
-import fetchGrowthRate from "../api/fetch-growth-rate";
-import { MAX_NUMBER_OF_YEARS, MIN_AMOUNT, MIN_NUMBER_OF_YEARS } from "../constants";
+import { MAX_NUMBER_OF_YEARS, MIN_AMOUNT, MIN_NUMBER_OF_YEARS } from "../constants/investment-details";
 import calculateAnnualGrowth from "../utils/calculate-annual-growth";
-
-const GROWTH_RATE_PROVIDER = "GROWTH_RATE_PROVIDER";
 
 export interface InvestmentDetails {
   annualGrowth?: Array<number>;
 }
 
-async function collectAnnualGrowth(
+function collectAnnualGrowth(
   amount: number | null,
-  numberOfYears: number | null
-) {
+  numberOfYears: number | null,
+  growthRate: number | null,
+): Array<number> | undefined {
   if (
     amount == null ||
     amount <= MIN_AMOUNT ||
     numberOfYears == null ||
     numberOfYears < MIN_NUMBER_OF_YEARS ||
-    numberOfYears > MAX_NUMBER_OF_YEARS
+    numberOfYears > MAX_NUMBER_OF_YEARS ||
+    growthRate == null
   ) {
-    return 
+    return;
   }
-  const growthRate = await fetchGrowthRate(GROWTH_RATE_PROVIDER);
   return calculateAnnualGrowth(amount, numberOfYears, growthRate);
 }
 
-export async function collectInvestmentDetails({
+export function collectInvestmentDetails({
   amount,
-  numberOfYears
+  numberOfYears,
+  growthRate,
 }: {
   amount: number | null;
   numberOfYears: number | null;
-}): Promise<InvestmentDetails> {
-  const annualGrowth = await collectAnnualGrowth(amount, numberOfYears);
+  growthRate: number | null;
+}): InvestmentDetails {
+  const annualGrowth = collectAnnualGrowth(amount, numberOfYears, growthRate);
 
   return {
-    annualGrowth
+    annualGrowth,
   };
 }

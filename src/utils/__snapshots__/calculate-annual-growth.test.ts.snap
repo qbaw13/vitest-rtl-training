@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`calculate annual growth > should throw an error when amount=+0, numberOfYears=1, growthRate=1 1`] = `"Amount should be positive number, amount=0"`;
+
+exports[`calculate annual growth > should throw an error when amount=1, numberOfYears=+0, growthRate=1 1`] = `"Number of years should be positive number, numberOfYears=0"`;
+
+exports[`calculate annual growth > should throw an error when amount=1, numberOfYears=1, growthRate=+0 1`] = `"Growth rate should be positive number, growthRate=0"`;
