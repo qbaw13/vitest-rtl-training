@@ -14,7 +14,7 @@ describe("user hook", () => {
         surname: "SURNAME_1",
         premium: false,
         investmentsCount: 2,
-        createdAt: "2010-01-01T23:00:00.000Z",
+        createdAt: "2010-01-02T00:00:00.000Z",
       });
     });
   });
@@ -39,7 +39,7 @@ describe("user hook", () => {
         surname: "SURNAME_22",
         premium: true,
         investmentsCount: 44,
-        createdAt: "2010-01-22T23:00:00.000Z",
+        createdAt: "2010-01-23T00:00:00.000Z",
       });
     });
     Math.random = originalMathRandomFn;
